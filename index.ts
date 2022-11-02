@@ -7,6 +7,7 @@ import CryptoJS from "crypto-js"
 import ChatBot from "./chatBot";
 import { Produtos } from "./Types/ProdutosConst";
 import { Local } from "./Types/LocalConst";
+import { IHistorico } from "./Types/IHistorico";
 
 const PORT = 3333
 
@@ -26,6 +27,9 @@ const io = new Server(server, {
 let flagComprar = false
 let FinaizarCompra = false
 let listaCompras: string[] = []
+
+let historicoCompras: IHistorico[] = []
+
 let precoTotal = 0
 
 let mensagens  :IMensagem[]   = []
@@ -55,7 +59,7 @@ io.on('connection', (socket : any) => {
         if(!flagComprar && !FinaizarCompra) mensagens.push(msg)
 
         if(!flagComprar && msg.mensagem !=="Comprar" && msg.mensagem!=="Sair" && !FinaizarCompra){
-            const resposta = new ChatBot().opcoes(msg.mensagem,msg.autor)!
+            const resposta = new ChatBot().opcoes(msg.mensagem,msg.autor, historicoCompras.filter(x=> x.idComprador === msg.idAutor))
             mensagens.push({
                 idAutor: msg.idAutor,
                 mensagem:resposta,
@@ -102,6 +106,13 @@ io.on('connection', (socket : any) => {
                 data: new Date()
             })
 
+            historicoCompras.push({
+                dataCompra : new Date(),
+                idComprador: msg.idAutor,
+                local: oLocal.nome, 
+                valor: precoTotal,
+
+            })
             listaCompras = []
             precoTotal = 0     
         }         

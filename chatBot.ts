@@ -1,9 +1,10 @@
+import { IHistorico } from "./Types/IHistorico"
 import { Local } from "./Types/LocalConst"
 import { Produtos } from "./Types/ProdutosConst"
 
 export default class ChatBot{
 
-    opcoes(opcao: string, usuario: string){
+    opcoes(opcao: string, usuario: string, lista : IHistorico[]){
 
         if(opcao==="1"){
             const listaProdutos = Produtos.map(p => `id ${p.id} - ${p.nome} ${p.preco} R$`)
@@ -27,11 +28,15 @@ export default class ChatBot{
             para finalizar compra envie a mensagem ("Comprar")
             para Sair envie a mensagem ("Sair") `
         }
-        else if(opcao==="5"){
-            return '5 para entrar em vontato basta clicar no botão ao lado que sera direcionado ao nosso contato no whatsAppp'   
+        else if(opcao==="7"){
+            return '7 para entrar em vontato basta clicar no botão ao lado que sera direcionado ao nosso contato no whatsAppp'   
         }
         else if(opcao=="6"){
             return opcao   
+        }
+        else if(opcao==="5"){
+            const historico = lista.map(p => `Compra no dia ${p.dataCompra.toLocaleString()} no valor ${p.valor} R$ Local ${p.local}`)
+            return historico.join("\n")
         }
         else{
             return `Ola ${usuario} seja bem vindo ao atendimento virtual  Escolha uma das opções abaixo: 
@@ -39,8 +44,10 @@ export default class ChatBot{
             2 - Locais de venda
             3 - Qual seu nome?
             4 - comprar 
-            5 - Entre em contato
-            6 - Quem somos nós`
+            5 - Historico de compras
+            6 - Quem somos nós
+            7 - Entre em contato
+            `
         }
 
     }
