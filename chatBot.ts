@@ -17,7 +17,7 @@ export default class ChatBot{
         
         }
         else if(opcao==="3"){
-            return "ola sou o (CHATBOT) sou representante virtual da empresa (empresa)"
+            return "ola sou o CHATTOTZ sou representante virtual da empresa (empresa) é um prazer conhece-lo"
         
         }
         else if(opcao==="4"){
@@ -32,7 +32,7 @@ export default class ChatBot{
             return '7 para entrar em vontato basta clicar no botão ao lado que sera direcionado ao nosso contato no whatsAppp'   
         }
         else if(opcao=="6"){
-            return opcao   
+            return "Ola somos a empresa (empresa) de venda de eletronicos para ajudar nessa sua jornada pelo mundo da tecnologia"   
         }
         else if(opcao==="5"){
             const historico = lista.map(p => `Compra no dia ${p.dataCompra.toLocaleString()} no valor ${p.valor} R$ Local ${p.local}`)
