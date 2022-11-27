@@ -37,7 +37,7 @@ const users :IUsuario[] = []
 
 app.get('/getNumber', (req : Request, res : Response)=> {
  
-        const ciphertext = CryptoJS.AES.encrypt('YOUR_NUMBER', 'hash123').toString();
+        const ciphertext = CryptoJS.AES.encrypt('5511961047953', 'hash123').toString();
         res.status(200).send({sucesso:true, mensagemErro: '', resultado: ciphertext })
 
 })
@@ -58,7 +58,7 @@ io.on('connection', (socket : any) => {
 
         if(!flagComprar && !FinaizarCompra) mensagens.push(msg)
 
-        if(!flagComprar && msg.mensagem !=="Comprar" && msg.mensagem!=="Sair" && !FinaizarCompra){
+        if(!flagComprar && msg.mensagem.toUpperCase() !=="COMPRAR" && msg.mensagem.toUpperCase() !=="SAIR" && !FinaizarCompra){
             const resposta = new ChatBot().opcoes(msg.mensagem,msg.autor, historicoCompras.filter(x=> x.idComprador === msg.idAutor))
             mensagens.push({
                 idAutor: msg.idAutor,
