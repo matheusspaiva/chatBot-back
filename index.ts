@@ -37,7 +37,7 @@ const users :IUsuario[] = []
 
 app.get('/getNumber', (req : Request, res : Response)=> {
  
-        const ciphertext = CryptoJS.AES.encrypt('oUsuario.numero', 'hash123').toString();
+        const ciphertext = CryptoJS.AES.encrypt('YOUR_NUMBER', 'hash123').toString();
         res.status(200).send({sucesso:true, mensagemErro: '', resultado: ciphertext })
 
 })
@@ -63,7 +63,7 @@ io.on('connection', (socket : any) => {
             mensagens.push({
                 idAutor: msg.idAutor,
                 mensagem:resposta,
-                autor:'chat',
+                autor:'CHATTOTZ',
                 data: new Date()
             })
             flagComprar = msg.mensagem === "4"
@@ -118,7 +118,7 @@ io.on('connection', (socket : any) => {
         }         
         }
 
-        if(msg.mensagem==="Comprar"){
+        if(msg.mensagem.toUpperCase() === "COMPRAR" && flagComprar){
    
             listaCompras.push(`Preço Total : ${precoTotal.toFixed(2)} R$`)
             mensagens.push({
@@ -133,7 +133,7 @@ io.on('connection', (socket : any) => {
 
 
 
-        if(msg.mensagem ==="Sair"){
+        if(msg.mensagem.toUpperCase() ==="SAIR"){
             flagComprar = false
             FinaizarCompra = false
             listaCompras = []
@@ -143,7 +143,7 @@ io.on('connection', (socket : any) => {
         socket.broadcast.emit('listaMensagens', mensagens)
     })
 
-    socket.on('enterUser', (dataUser: any) => {
+    socket.on('enterUser', (dataUser: IUsuario) => {
         users.push(dataUser)
     })
 

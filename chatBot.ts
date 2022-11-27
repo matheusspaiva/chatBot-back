@@ -32,14 +32,15 @@ export default class ChatBot{
             return '7 para entrar em vontato basta clicar no botão ao lado que sera direcionado ao nosso contato no whatsAppp'   
         }
         else if(opcao=="6"){
-            return "Ola somos a empresa (empresa) de venda de eletronicos para ajudar nessa sua jornada pelo mundo da tecnologia"   
+            return "Ola somos a empresa DYNATECH de venda de eletronicos para ajudar nessa sua jornada pelo mundo da tecnologia"   
         }
         else if(opcao==="5"){
             const historico = lista.map(p => `Compra no dia ${p.dataCompra.toLocaleString()} no valor ${p.valor} R$ Local ${p.local}`)
             return historico.join("\n")
         }
         else{
-            return `Ola ${usuario} seja bem vindo ao atendimento virtual  Escolha uma das opções abaixo: 
+            return `Ola ${usuario} seja bem vindo ao atendimento virtual da empresa DYNATECH eu sou CHATTOTZ
+            Escolha uma das opções abaixo: 
             1 - Produtos
             2 - Locais de venda
             3 - Qual seu nome?
