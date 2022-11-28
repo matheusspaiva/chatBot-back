@@ -17,7 +17,7 @@ export default class ChatBot{
         
         }
         else if(opcao==="3"){
-            return "ola sou o CHATTOTZ sou representante virtual da empresa (empresa) é um prazer conhece-lo"
+            return "ola sou o CHATTOTZ sou representante virtual da empresa DYNATECH é um prazer conhece-lo"
         
         }
         else if(opcao==="4"){

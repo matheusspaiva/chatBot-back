@@ -37,7 +37,7 @@ const users :IUsuario[] = []
 
 app.get('/getNumber', (req : Request, res : Response)=> {
  
-        const ciphertext = CryptoJS.AES.encrypt('5511961047953', 'hash123').toString();
+        const ciphertext = CryptoJS.AES.encrypt('YOUR_NUMBER', 'hash123').toString();
         res.status(200).send({sucesso:true, mensagemErro: '', resultado: ciphertext })
 
 })
